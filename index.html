@@ -7,9 +7,23 @@
     <main>
       <label for="user-dropdown-list">Select user:</label>
       <select id="user-dropdown-list">
-        <option value="">Select user</option>
+        <option value="">Users</option>
       </select>
       <section id="user-bookmarks"></section>
+      <form id="bookmark-form">
+        <label for="bookmark-url">Enter URL</label>
+        <input name="bookmark-url" type="url" id="bookmark-url" required />
+        <label for="bookmark-title">Enter title</label>
+        <input name="bookmark-title" type="text" id="bookmark-title" required />
+        <label for="bookmark-description">Add a description</label>
+        <input
+          name="bookmark-description"
+          type="text"
+          id="bookmark-description"
+          required
+        />
+        <button type="submit" id="submit-bookmark">Submit</button>
+      </form>
     </main>
   </body>
 </html>
