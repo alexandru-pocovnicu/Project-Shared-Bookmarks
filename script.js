@@ -29,8 +29,10 @@ function listenForUserChange() {
 }
 
 function renderBookmarks(bookmarksPlaceholder) {
+  const bookmarkForm = document.getElementById("bookmark-form");
   userBookmarks.innerHTML = "";
   if (bookmarksPlaceholder === null || bookmarksPlaceholder.length === 0) {
+    bookmarkForm.hidden=true
     userBookmarks.textContent = "User has no bookmarks";
     return;
   }
