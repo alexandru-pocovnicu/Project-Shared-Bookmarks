@@ -10,11 +10,11 @@ const selectUser = document.querySelector("#user-dropdown-list");
 
 window.onload = function () {
   addUsersToDropDown();
-  getUserBookmark();
+  listenForUserChange();
 };
 
-//function to get each user's bookmarks/ an array of bookmarks
-function getUserBookmark() {
+// listen for user changes and render that user's bookmarks
+function listenForUserChange() {
   selectUser.addEventListener("change", function () {
     const selectedUserId = selectUser.value;
     const bookmarks = getData(selectedUserId);
