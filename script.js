@@ -7,6 +7,7 @@
 import { getUserIds, getData } from "./storage.js";
 const users = getUserIds(); //get the users IDs from storage.js
 const selectUser = document.querySelector("#user-dropdown-list");
+const userBookmarks = document.getElementById("user-bookmarks");
 
 window.onload = function () {
   addUsersToDropDown();
@@ -17,13 +18,17 @@ window.onload = function () {
 function listenForUserChange() {
   selectUser.addEventListener("change", function () {
     const selectedUserId = selectUser.value;
+
+    if (selectedUserId === "") {
+      userBookmarks.innerHTML = "";
+      return;
+    }
     const bookmarks = getData(selectedUserId);
     renderBookmarks(bookmarks);
   });
 }
 
 function renderBookmarks(bookmarksPlaceholder) {
-  const userBookmarks = document.getElementById("user-bookmarks");
   userBookmarks.innerHTML = "";
   if (bookmarksPlaceholder === null || bookmarksPlaceholder.length === 0) {
     userBookmarks.textContent = "User has no bookmarks";
