@@ -5,7 +5,7 @@
 // You can't open the index.html file using a file:// URL.
 
 import { getUserIds, getData } from "./storage.js";
-const users = getUserIds();
+const users = getUserIds();//get the users IDs from storage.js
 const selectUser = document.querySelector("#user-dropdown-list");
 
 window.onload = function () {
@@ -13,6 +13,7 @@ window.onload = function () {
   getUserBookmark();
 };
 
+//function to get each user's bookmarks/ an array of bookmarks
 function getUserBookmark() {
   selectUser.addEventListener("change", function () {
     const selectedUserId = selectUser.value;
@@ -20,6 +21,8 @@ function getUserBookmark() {
     console.log(bookmarks);
   });
 }
+
+//add users from the storage.js file to <select>
 function addUsersToDropDown() {
   for (const user of users) {
     const option = document.createElement("option");
