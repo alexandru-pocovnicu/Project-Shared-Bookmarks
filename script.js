@@ -5,8 +5,16 @@
 // You can't open the index.html file using a file:// URL.
 
 import { getUserIds } from "./storage.js";
-
+const users = getUserIds();
 window.onload = function () {
-  const users = getUserIds();
-  document.querySelector("body").innerText = `There are ${users.length} users`;
+  addUsers();
 };
+function addUsers() {
+  const selectUser = document.querySelector("#user-dropdown-list");
+  for (const user of users) {
+    const option = document.createElement("option");
+    option.value = user;
+    option.textContent = user;
+    selectUser.append(option);
+  }
+}
