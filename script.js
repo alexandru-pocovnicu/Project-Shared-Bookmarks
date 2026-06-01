@@ -8,6 +8,7 @@ import { getUserIds, getData, setData } from "./storage.js";
 const users = getUserIds(); //get the users IDs from storage.js
 const selectUser = document.querySelector("#user-dropdown-list");
 const userBookmarks = document.getElementById("user-bookmarks");
+const bookmarkForm = document.getElementById("bookmark-form");
 
 window.onload = function () {
   addUsersToDropDown();
@@ -29,10 +30,10 @@ function listenForUserChange() {
 }
 
 function renderBookmarks(bookmarksPlaceholder) {
-  const bookmarkForm = document.getElementById("bookmark-form");
+  
   userBookmarks.innerHTML = "";
   if (bookmarksPlaceholder === null || bookmarksPlaceholder.length === 0) {
-    //bookmarkForm.hidden=true
+   
     userBookmarks.textContent = "User has no bookmarks";
     return;
   }
@@ -62,8 +63,8 @@ function addUsersToDropDown() {
 }
 
 //add submit and add bookmark to the current user
-const bookmarkForm = document.getElementById("bookmark-form");
-bookmarkForm.addEventListener("submit", addBookmark);
+
+bookmarkForm.addEventListener("submit", addBookmark);//might need to go inside a function
 
 function addBookmark(event) {
   event.preventDefault();
