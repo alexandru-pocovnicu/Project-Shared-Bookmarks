@@ -36,18 +36,43 @@ function renderBookmarks(bookmarksPlaceholder) {
     userBookmarks.textContent = "User has no bookmarks";
     return;
   }
-  for (const bookmark of bookmarksPlaceholder) {
+
+  const sortedBookmarks = [...bookmarksPlaceholder].sort(
+    (a, b) =>
+      new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
+  for (const bookmark of sortedBookmarks) {
     const bookmarkDiv = document.createElement("div");
 
-  bookmarkDiv.innerHTML = `
-    <a href="${bookmark.url}" target="_blank">
-      ${bookmark.title}
-    </a>
-    <p>${bookmark.description}</p>
-    <p>${bookmark.createdAt}</p>
-  `;
+    const titleLink = document.createElement("a");
+    titleLink.href = bookmark.url;
+    titleLink.target = "_blank";
+    titleLink.textContent = bookmark.title;
 
-  userBookmarks.append(bookmarkDiv);
+    const description = document.createElement("p");
+    description.textContent = bookmark.description;
+
+    const createdAt = document.createElement("p");
+    createdAt.textContent =
+      "Created: " +
+      new Date(bookmark.createdAt).toLocaleString();
+
+    const copyButton = document.createElement("button");
+    copyButton.textContent = "Copy URL";
+
+    copyButton.addEventListener("click", () => {
+      navigator.clipboard.writeText(bookmark.url);
+    });
+
+    bookmarkDiv.append(
+      titleLink,
+      description,
+      createdAt,
+      copyButton
+    );
+
+    userBookmarks.append(bookmarkDiv);
   }
 }
 
@@ -64,6 +89,8 @@ function addUsersToDropDown() {
 //add submit and add bookmark to the current user
 const bookmarkForm = document.getElementById("bookmark-form");
 bookmarkForm.addEventListener("submit", addBookmark);
+
+//add bookmark to the current user and update the storage and the page
 
 function addBookmark(event) {
   event.preventDefault();
@@ -90,23 +117,3 @@ function addBookmark(event) {
   bookmarkForm.reset();
 }
 
-//add sort by date button
-
-const sortedBookmarks = [...bookmarksPlaceholder].sort(
-  (a, b) =>
-    new Date(b.createdAt) - new Date(a.createdAt)
-);
-
-//add copy to clipboard button
-
-const copyButton = document.createElement("button");
-copyButton.textContent = "Copy URL";
-
-copyButton.addEventListener("click", () => {
-  navigator.clipboard.writeText(bookmark.url);
-});
-
-//add likes
-
-const likeButton = document.createElement("button");
-likeButton.textContent = `Like (${bookmark.likes})`
