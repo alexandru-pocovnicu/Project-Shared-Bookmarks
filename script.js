@@ -13,6 +13,8 @@ const bookmarkForm = document.getElementById("bookmark-form");
 window.onload = function () {
   addUsersToDropDown();
   listenForUserChange();
+
+  bookmarkForm.addEventListener("submit", addBookmark);
 };
 
 // listen for user changes and render that user's bookmarks
@@ -98,11 +100,7 @@ function addUsersToDropDown() {
     selectUser.append(option);
   }
 }
-
-//add submit and add bookmark to the current user
-
-bookmarkForm.addEventListener("submit", addBookmark); //might need to go inside a function
-
+ 
 //add bookmark to the current user and update the storage and the page
 
 function addBookmark(event) {
