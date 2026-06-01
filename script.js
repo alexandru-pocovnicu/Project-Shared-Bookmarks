@@ -12,8 +12,6 @@ const userBookmarks = document.getElementById("user-bookmarks");
 window.onload = function () {
   addUsersToDropDown();
   listenForUserChange();
-
-  bookmarkForm.addEventListener("submit", addBookmark);
 };
 
 // listen for user changes and render that user's bookmarks
