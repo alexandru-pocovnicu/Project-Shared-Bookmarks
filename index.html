@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookmark APP</title>
     <script type="module" src="./script.js"></script>
   </head>
@@ -13,19 +13,27 @@
         <option value="">select users</option>
       </select>
       <section id="user-bookmarks"></section>
-      <form id="bookmark-form" hidden>
-        <label for="bookmark-url">Enter URL</label>
-        <input name="bookmark-url" type="url" id="bookmark-url" required />
-        <label for="bookmark-title">Enter title</label>
-        <input name="bookmark-title" type="text" id="bookmark-title" required />
-        <label for="bookmark-description">Add a description</label>
-        <input
-          name="bookmark-description"
-          type="text"
-          id="bookmark-description"
-          required
-        />
-        <button type="submit" id="submit-bookmark">Submit</button>
+      <form id="bookmark-form">
+        <legend>Add bookmark</legend>
+        <fieldset>
+          <label for="bookmark-url">Enter URL</label>
+          <input name="bookmark-url" type="url" id="bookmark-url" required />
+          <label for="bookmark-title">Enter title</label>
+          <input
+            name="bookmark-title"
+            type="text"
+            id="bookmark-title"
+            required
+          />
+          <label for="bookmark-description">Add a description</label>
+          <input
+            name="bookmark-description"
+            type="text"
+            id="bookmark-description"
+            required
+          />
+          <button type="submit" id="submit-bookmark">Submit</button>
+        </fieldset>
       </form>
     </main>
   </body>
