@@ -64,8 +64,26 @@ function renderBookmarks(bookmarksPlaceholder) {
     copyButton.addEventListener("click", () => {
       navigator.clipboard.writeText(bookmark.url);
     });
+    const likeButton = document.createElement("button");
+    likeButton.textContent = `Like: ${bookmark.likes}`;
 
-    bookmarkDiv.append(titleLink, description, createdAt, copyButton);
+    likeButton.addEventListener("click",()=>{
+       bookmark.likes++;
+
+       const selectedUserId = selectUser.value;
+
+       setData(selectedUserId, bookmarksPlaceholder);
+
+       renderBookmarks(bookmarksPlaceholder);
+    })
+
+    bookmarkDiv.append(
+      titleLink,
+      description,
+      createdAt,
+      copyButton,
+      likeButton,
+    );
 
     userBookmarks.append(bookmarkDiv);
   }
