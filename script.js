@@ -21,9 +21,11 @@ function listenForUserChange() {
     const selectedUserId = selectUser.value;
 
     if (selectedUserId === "") {
+      bookmarkForm.hidden=true
       userBookmarks.innerHTML = "";
       return;
     }
+    bookmarkForm.hidden=false
     const bookmarks = getData(selectedUserId);
     renderBookmarks(bookmarks);
   });
