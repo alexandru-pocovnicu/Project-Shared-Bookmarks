@@ -21,26 +21,26 @@ function listenForUserChange() {
     const selectedUserId = selectUser.value;
 
     if (selectedUserId === "") {
+      bookmarkForm.hidden = true;
       userBookmarks.innerHTML = "";
       return;
+    } else {
+      bookmarkForm.hidden = false;
+      const bookmarks = getData(selectedUserId);
+      renderBookmarks(bookmarks);
     }
-    const bookmarks = getData(selectedUserId);
-    renderBookmarks(bookmarks);
   });
 }
 
 function renderBookmarks(bookmarksPlaceholder) {
-  
   userBookmarks.innerHTML = "";
   if (bookmarksPlaceholder === null || bookmarksPlaceholder.length === 0) {
-   
     userBookmarks.textContent = "User has no bookmarks";
     return;
   }
 
   const sortedBookmarks = [...bookmarksPlaceholder].sort(
-    (a, b) =>
-      new Date(b.createdAt) - new Date(a.createdAt)
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
   );
 
   for (const bookmark of sortedBookmarks) {
@@ -56,8 +56,7 @@ function renderBookmarks(bookmarksPlaceholder) {
 
     const createdAt = document.createElement("p");
     createdAt.textContent =
-      "Created: " +
-      new Date(bookmark.createdAt).toLocaleString();
+      "Created: " + new Date(bookmark.createdAt).toLocaleString();
 
     const copyButton = document.createElement("button");
     copyButton.textContent = "Copy URL";
@@ -66,12 +65,7 @@ function renderBookmarks(bookmarksPlaceholder) {
       navigator.clipboard.writeText(bookmark.url);
     });
 
-    bookmarkDiv.append(
-      titleLink,
-      description,
-      createdAt,
-      copyButton
-    );
+    bookmarkDiv.append(titleLink, description, createdAt, copyButton);
 
     userBookmarks.append(bookmarkDiv);
   }
@@ -89,14 +83,14 @@ function addUsersToDropDown() {
 
 //add submit and add bookmark to the current user
 
-bookmarkForm.addEventListener("submit", addBookmark);//might need to go inside a function
+bookmarkForm.addEventListener("submit", addBookmark); //might need to go inside a function
 
 //add bookmark to the current user and update the storage and the page
 
 function addBookmark(event) {
   event.preventDefault();
-
   const selectedUserId = selectUser.value;
+  if (selectedUserId === "") return;
 
   const bookmarks = getData(selectedUserId) || [];
 
@@ -106,7 +100,7 @@ function addBookmark(event) {
     title: document.getElementById("bookmark-title").value,
     description: document.getElementById("bookmark-description").value,
     createdAt: new Date().toISOString(),
-    likes: 0
+    likes: 0,
   };
 
   bookmarks.push(bookmark);
@@ -117,4 +111,3 @@ function addBookmark(event) {
 
   bookmarkForm.reset();
 }
-
