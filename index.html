@@ -1,16 +1,19 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark APP</title>
     <script type="module" src="./script.js"></script>
   </head>
   <body>
     <main>
       <label for="user-dropdown-list">Select user:</label>
       <select id="user-dropdown-list">
-        <option value="">Users</option>
+        <option value="">select users</option>
       </select>
       <section id="user-bookmarks"></section>
-      <form id="bookmark-form" hidden>
+      <form id="bookmark-form" >
         <label for="bookmark-url">Enter URL</label>
         <input name="bookmark-url" type="url" id="bookmark-url" required />
         <label for="bookmark-title">Enter title</label>
