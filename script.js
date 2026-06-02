@@ -4,6 +4,7 @@
 // Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
 // You can't open the index.html file using a file:// URL.
 
+import { sortBookmarks } from "./bookmark.js";
 import { getUserIds, getData, setData } from "./storage.js";
 const users = getUserIds(); //get the users IDs from storage.js
 const selectUser = document.querySelector("#user-dropdown-list");
@@ -41,9 +42,7 @@ function renderBookmarks(bookmarksPlaceholder) {
     return;
   }
 
-  const sortedBookmarks = [...bookmarksPlaceholder].sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-  );
+  const sortedBookmarks = sortBookmarks(bookmarksPlaceholder);
 
   for (const bookmark of sortedBookmarks) {
     const bookmarkDiv = document.createElement("div");
