@@ -104,19 +104,30 @@ function addUsersToDropDown() {
 
 function addBookmark(event) {
   event.preventDefault();
+
   const selectedUserId = selectUser.value;
   if (selectedUserId === "") return;
 
   const bookmarks = getData(selectedUserId) || [];
 
+  const url = document.getElementById("bookmark-url").value.trim();
+  const title = document.getElementById("bookmark-title").value.trim();
+  const description = document.getElementById("bookmark-description").value.trim();
+
+  if (!url || !title || !description) {
+    alert("Please enter valid values.");
+    return;
+  }
+
   const bookmark = {
     id: Date.now(),
-    url: document.getElementById("bookmark-url").value,
-    title: document.getElementById("bookmark-title").value,
-    description: document.getElementById("bookmark-description").value,
+    url,
+    title,
+    description,
     createdAt: new Date().toISOString(),
     likes: 0,
   };
+
 
   bookmarks.push(bookmark);
 
