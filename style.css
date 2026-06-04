@@ -4,3 +4,8 @@
 #copy-button{
     margin:1em
 }
+#bookmark-div{
+    border:solid;
+    margin: .5em;
+    padding:1em;
+}

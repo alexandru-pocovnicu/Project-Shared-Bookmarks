@@ -39,6 +39,7 @@ function renderBookmarks(bookmarksPlaceholder) {
 
   for (const bookmark of sortedBookmarks) {
     const bookmarkDiv = document.createElement("div");
+    bookmarkDiv.id="bookmark-div"
 
     const titleLink = document.createElement("a");
     titleLink.href = bookmark.url;
