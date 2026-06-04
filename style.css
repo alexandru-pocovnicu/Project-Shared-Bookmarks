@@ -1,20 +1,23 @@
-#user-dropdown-list{
-    margin-bottom: 2em;
+#user-dropdown-list {
+  margin-bottom: 2em;
 }
-#copy-button{
-    margin:1em
+#copy-button {
+  margin: 1em;
 }
-#bookmark-div{
-    border:solid;
-    margin: .5em;
-    padding:1em;
+#bookmark-div {
+  border: solid;
+  margin: 0.5em;
+  padding: 1em;
 }
-fieldset{
-  display: grid;  
+fieldset {
+  display: grid;
 }
-fieldset>*{
-    margin: 5px;
+fieldset > * {
+  margin: 5px;
 }
-#submit-bookmark{
-    justify-self: start;
+#submit-bookmark {
+  justify-self: start;
+}
+#user-bookmarks {
+  margin: 1em;
 }
