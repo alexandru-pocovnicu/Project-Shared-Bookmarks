@@ -54,6 +54,7 @@ function renderBookmarks(bookmarksPlaceholder) {
       "Created: " + new Date(bookmark.createdAt).toLocaleString();
 
     const copyButton = document.createElement("button");
+    copyButton.id="copy-button"
     copyButton.textContent = "Copy URL";
 
     copyButton.addEventListener("click", () => {
