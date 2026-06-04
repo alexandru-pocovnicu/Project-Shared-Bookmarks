@@ -43,6 +43,7 @@ function renderBookmarks(bookmarksPlaceholder) {
     const titleLink = document.createElement("a");
     titleLink.href = bookmark.url;
     titleLink.target = "_blank";
+    titleLink.rel = "noopener noreferrer";
     titleLink.textContent = bookmark.title;
 
     const description = document.createElement("p");
