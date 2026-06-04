@@ -1,5 +1,3 @@
-
-
 import { sortBookmarks } from "./bookmark.js";
 import { getUserIds, getData, setData } from "./storage.js";
 const users = getUserIds(); //get the users IDs from storage.js
@@ -13,7 +11,6 @@ window.onload = function () {
 
   bookmarkForm.addEventListener("submit", addBookmark);
 };
-
 
 function listenForUserChange() {
   selectUser.addEventListener("change", function () {
@@ -61,18 +58,23 @@ function renderBookmarks(bookmarksPlaceholder) {
     copyButton.addEventListener("click", () => {
       navigator.clipboard.writeText(bookmark.url);
     });
+
+    if (bookmark.likes === undefined) {
+      bookmark.likes = 0;
+    }
+
     const likeButton = document.createElement("button");
     likeButton.textContent = `Like: ${bookmark.likes}`;
 
-    likeButton.addEventListener("click",()=>{
-       bookmark.likes++;
+    likeButton.addEventListener("click", () => {
+      bookmark.likes++;
 
-       const selectedUserId = selectUser.value;
+      const selectedUserId = selectUser.value;
 
-       setData(selectedUserId, bookmarksPlaceholder);
+      setData(selectedUserId, bookmarksPlaceholder);
 
-       renderBookmarks(bookmarksPlaceholder);
-    })
+      renderBookmarks(bookmarksPlaceholder);
+    });
 
     bookmarkDiv.append(
       titleLink,
@@ -86,7 +88,6 @@ function renderBookmarks(bookmarksPlaceholder) {
   }
 }
 
-
 function addUsersToDropDown() {
   for (const user of users) {
     const option = document.createElement("option");
@@ -95,8 +96,6 @@ function addUsersToDropDown() {
     selectUser.append(option);
   }
 }
- 
-
 
 function addBookmark(event) {
   event.preventDefault();
@@ -108,7 +107,9 @@ function addBookmark(event) {
 
   const url = document.getElementById("bookmark-url").value.trim();
   const title = document.getElementById("bookmark-title").value.trim();
-  const description = document.getElementById("bookmark-description").value.trim();
+  const description = document
+    .getElementById("bookmark-description")
+    .value.trim();
 
   if (!url || !title || !description) {
     alert("Please enter valid values.");
@@ -123,7 +124,6 @@ function addBookmark(event) {
     createdAt: new Date().toISOString(),
     likes: 0,
   };
-
 
   bookmarks.push(bookmark);
 
