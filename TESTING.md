@@ -46,3 +46,11 @@ Tested manually by submitting the form and confirming the new bookmark appears i
 Data persists across sessions:
 
 Tested manually by refreshing the page and verifying bookmarks are still present.
+
+The website must score 100 for accessibility in Lighthouse:
+
+Tested manually using Lighthouse Snapshot mode in Chrome DevTools. The page scored 100 for accessibility.
+
+Unit tests must be written for at least one non-trivial function:
+
+Unit tests in script.test.js test that bookmarks are sorted in reverse chronological order using the sortBookmarks function imported from bookmark.js.
